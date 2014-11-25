@@ -7,28 +7,25 @@ class Attempt1 {
     var a: String?
     var b: Array<Int>?
     
-    final private var dictionary: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>() {
-        didSet {
-            a = dictionary["a"] as? String
-            b = dictionary["b"] as? Array<Int>
-        }
-    }
-    
     subscript(index: String) -> AnyObject? {
         get {
-            return dictionary[index]
+            switch index {
+            case "a": return a
+            case "b": return b
+            default: return nil
+            }
         }
         
         set(newValue) {
-            dictionary[index] = newValue
+            switch index {
+            case "a": a = newValue as? String
+            case "b": b = newValue as? Array<Int>
+            default: ()
+            }
         }
-    }
-    
-    init(_ dictionary: Dictionary<String, AnyObject>) {
-        self.dictionary = dictionary
     }
 }
 
-var t = Attempt1(["a": "monkey"])
+var t = Attempt1()
 t["b"] = [1, 2, 3]
-t.a // prints monkey
+t.a // prints nil
