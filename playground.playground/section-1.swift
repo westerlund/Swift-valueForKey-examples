@@ -4,13 +4,13 @@ import Cocoa
 
 class Attempt1 {
     
-    var a: AnyObject?
-    var b: AnyObject?
+    var a: String?
+    var b: Array<Int>?
     
     final private var dictionary: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>() {
         didSet {
-            a = dictionary["a"]
-            b = dictionary["b"]
+            a = dictionary["a"] as? String
+            b = dictionary["b"] as? Array<Int>
         }
     }
     
